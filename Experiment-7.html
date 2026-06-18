@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Result Calculator</title>
+</head>
+<body style="background-color:#e6e6e6;
+             font-family:Arial;
+             display:flex;
+             justify-content:center;
+             align-items:center;
+             min-height:100vh;">
+
+<div style="background:white;
+            width:700px;
+            padding:40px;
+            border-radius:20px;
+            box-shadow:0 5px 20px gray;
+            text-align:center;">
+
+    <h1>Student Result Calculator</h1>
+
+    <h2>Enter Number of Subjects</h2>
+
+    <input type="number"
+           id="subjects"
+           min="1"
+           value="5"
+           style="width:80%;
+                  padding:15px;
+                  font-size:20px;
+                  border-radius:5px;
+                  border:1px solid gray;">
+
+    <br><br>
+
+    <button onclick="generateFields()"
+            style="background:#0d6efd;
+                   color:white;
+                   padding:15px 30px;
+                   border:none;
+                   border-radius:10px;
+                   font-size:20px;
+                   cursor:pointer;">
+        Generate Fields
+    </button>
+
+    <div id="marksInputs" style="margin-top:30px;"></div>
+
+    <br>
+
+    <button onclick="calculateResult()"
+            style="background:#28a745;
+                   color:white;
+                   padding:15px 30px;
+                   border:none;
+                   border-radius:10px;
+                   font-size:20px;
+                   cursor:pointer;">
+        Calculate Result
+    </button>
+
+    <div id="result"
+         style="margin-top:30px;
+                font-size:30px;
+                font-weight:bold;">
+    </div>
+
+</div>
+
+<script>
+
+function generateFields()
+{
+    let n = document.getElementById("subjects").value;
+    let output = "";
+
+    for(let i=1;i<=n;i++)
+    {
+        output += `
+        <input type="number"
+               class="mark"
+               placeholder="Enter marks of Subject ${i}"
+               min="0"
+               max="100"
+               style="width:80%;
+                      padding:12px;
+                      margin:10px;
+                      font-size:18px;
+                      border-radius:5px;
+                      border:1px solid gray;">
+        <br>`;
+    }
+
+    document.getElementById("marksInputs").innerHTML = output;
+}
+
+function calculateResult()
+{
+    let marks = document.getElementsByClassName("mark");
+
+    let total = 0;
+
+    for(let i=0;i<marks.length;i++)
+    {
+        total += Number(marks[i].value);
+    }
+
+    let average = total / marks.length;
+
+    let grade;
+
+    if(average >= 90)
+        grade = "A+";
+    else if(average >= 75)
+        grade = "A";
+    else if(average >= 60)
+        grade = "B";
+    else if(average >= 40)
+        grade = "C";
+    else
+        grade = "F";
+
+    let result = average >= 40 ? "PASS" : "FAIL";
+
+    document.getElementById("result").innerHTML =
+        `Total Marks: ${total}<br>
+         Average Marks: ${average.toFixed(2)}<br>
+         Grade: ${grade}<br>
+         Result: ${result}`;
+}
+
+</script>
+
+</body>
+</html>

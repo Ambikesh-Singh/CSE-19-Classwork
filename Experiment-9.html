@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Lab</title>
+</head>
+<body id="body"
+style="
+background-color:#e6e6e6;
+font-family:Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;">
+
+<div style="
+background:white;
+width:700px;
+padding:50px;
+border-radius:20px;
+box-shadow:0px 5px 20px gray;
+text-align:center;">
+
+    <h1 id="heading">
+        Welcome to JavaScript Lab
+    </h1>
+
+    <input type="text"
+           id="inputText"
+           placeholder="Enter new heading text"
+           style="
+           width:300px;
+           padding:15px;
+           font-size:20px;
+           border:1px solid gray;
+           border-radius:5px;">
+
+    <br><br>
+
+    <button onclick="changeHeading()"
+    style="
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:8px;
+    font-size:20px;
+    cursor:pointer;">
+        Change Heading
+    </button>
+
+    <button onclick="changeBackground()"
+    style="
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:8px;
+    font-size:20px;
+    cursor:pointer;">
+        Change Background
+    </button>
+
+    <button onclick="increaseFont()"
+    style="
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:8px;
+    font-size:20px;
+    cursor:pointer;">
+        Increase Font Size
+    </button>
+
+    <br><br>
+
+    <button onclick="toggleParagraph()"
+    style="
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:8px;
+    font-size:20px;
+    cursor:pointer;">
+        Show/Hide Paragraph
+    </button>
+
+    <button onclick="resetPage()"
+    style="
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:15px;
+    border-radius:8px;
+    font-size:20px;
+    cursor:pointer;">
+        Reset
+    </button>
+
+    <br><br><br>
+
+    <p id="paragraph"
+    style="font-size:32px;">
+        This is a sample paragraph. JavaScript events can dynamically change content.
+    </p>
+
+</div>
+
+<script>
+
+let size = 32;
+
+function changeHeading()
+{
+    let text = document.getElementById("inputText").value;
+
+    if(text!="")
+    {
+        document.getElementById("heading").innerHTML = text;
+    }
+}
+
+function changeBackground()
+{
+    let colors = ["lightblue","lightgreen","pink","lavender","beige","skyblue"];
+
+    let randomColor = colors[Math.floor(Math.random()*colors.length)];
+
+    document.getElementById("body").style.backgroundColor = randomColor;
+}
+
+function increaseFont()
+{
+    size += 4;
+
+    document.getElementById("paragraph").style.fontSize = size + "px";
+}
+
+function toggleParagraph()
+{
+    let p = document.getElementById("paragraph");
+
+    if(p.style.display=="none")
+        p.style.display="block";
+    else
+        p.style.display="none";
+}
+
+function resetPage()
+{
+    document.getElementById("heading").innerHTML =
+    "Welcome to JavaScript Lab";
+
+    document.getElementById("inputText").value = "";
+
+    document.getElementById("body").style.backgroundColor = "#e6e6e6";
+
+    document.getElementById("paragraph").style.display = "block";
+
+    size = 32;
+
+    document.getElementById("paragraph").style.fontSize = "32px";
+}
+
+</script>
+
+</body>
+</html>
